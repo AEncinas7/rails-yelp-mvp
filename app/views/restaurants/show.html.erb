@@ -4,9 +4,14 @@
 <p>Category: <%= @restaurant.category %></p>
 <p>Phone Number: <%= @restaurant.phone_number %></p>
 
-<p><%= link_to "Add a review", new_restaurant_review_path(@restaurant) %></p>
-
 <h2>Reviews</h2>
+
+<%= simple_form_for [ @restaurant, @review ] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating %>
+  <%= f.button :submit %>
+<% end %>
+
 <% if @restaurant.reviews == [] %>
   <p>No reviews yet</p>
 <% else %>
